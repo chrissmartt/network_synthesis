@@ -1,0 +1,7 @@
+1. The positive-real function test fails for theb minimum-real function
+test case: test_Hazony_5.2.10
+Z(s) =  1.00 s^2 +  1.00 s^1 +  1.00
+       -----------------------------
+        1.00 s^2 +  1.00 s^1 +  4.00
+        
+

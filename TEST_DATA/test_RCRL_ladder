@@ -1,0 +1,13 @@
+2   # a order
+2   # b order
+1d0 # wnorm
+# a coefficients, constant first then increasing powers of s
+2d0
+2d0
+1d0
+# b coefficients, constant first then increasing powers of s
+1d0
+1d0
+1d0
+# wmin,wmax,nw
+0.01 4.0 200

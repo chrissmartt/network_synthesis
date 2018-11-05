@@ -1,0 +1,41 @@
+# Script to clean object files, mod files and 
+# all temporary test case files before updating 
+# the git repository.
+
+cd SRC 
+make clean
+rm -f compilation_date.inc 
+cd ..
+cd IMPEDANCE_TEST_DATA
+rm -f *.fout
+rm -f PROGRESS
+rm -f run_status
+rm -f result_comparison.dat
+rm -f result_comparison_Im.dat
+rm -f result_comparison_Re.dat
+rm -f ngspice_circuit.cir
+rm -f compare_results_in.txt
+cd ..
+cd ZT_TEST_DATA
+rm -f *.fout
+rm -f PROGRESS
+rm -f run_status
+rm -f result_comparison.dat
+rm -f result_comparison_Im.dat
+rm -f result_comparison_Re.dat
+rm -f ngspice_circuit.cir
+rm -f compare_results_in.txt
+cd ..
+cd ESA_SPICE/SRC
+make clean
+rm -f compilation_date.inc 
+cd ../..
+cd ESA_SPICE/TEST_CASES
+generate_spice_cable_bundle_model clean
+cd ../..
+cd ESA_SPICE/NEW_TEST_CASES
+generate_spice_cable_bundle_model clean
+cd ../..
+cd ESA_SPICE/DOCUMENTATION_NETWORK_SYNTHESIS
+make clean
+cd ../..

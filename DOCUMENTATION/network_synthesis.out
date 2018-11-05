@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{Section}{}% 1
+\BOOKMARK [1][-]{section.2}{Network synthesis for specified frequency dependent transfer functions}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{One port impedance models}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Algorithm for impedance synthesis}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Identification of series impedance branches}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{RLC in parallel branch}{subsection.2.3}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.2}{LC in parallel branch}{subsection.2.3}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.3}{RC in parallel branch}{subsection.2.3}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.4}{RL in parallel branch}{subsection.2.3}% 9
+\BOOKMARK [3][-]{subsubsection.2.3.5}{Capacitance branch}{subsection.2.3}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.6}{Inductance branch}{subsection.2.3}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.7}{Resistance branch, type 1}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.8}{Resistance branch, type 2}{subsection.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.4}{Identification of admittance branches}{section.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.4.1}{GCL in series branch}{subsection.2.4}% 15
+\BOOKMARK [3][-]{subsubsection.2.4.2}{LC in series branch}{subsection.2.4}% 16
+\BOOKMARK [3][-]{subsubsection.2.4.3}{GL in series branch}{subsection.2.4}% 17
+\BOOKMARK [3][-]{subsubsection.2.4.4}{GC in series branch}{subsection.2.4}% 18
+\BOOKMARK [3][-]{subsubsection.2.4.5}{Inductance branch}{subsection.2.4}% 19
+\BOOKMARK [3][-]{subsubsection.2.4.6}{Capacitance branch}{subsection.2.4}% 20
+\BOOKMARK [3][-]{subsubsection.2.4.7}{Conductance \(Resistance\) branch, type 1}{subsection.2.4}% 21
+\BOOKMARK [3][-]{subsubsection.2.4.8}{Conductance \(Resistance\) branch, type 2}{subsection.2.4}% 22
+\BOOKMARK [2][-]{subsection.2.5}{Brune Synthesis}{section.2}% 23
+\BOOKMARK [1][-]{section.3}{Two port transfer impedance models}{}% 24
+\BOOKMARK [1][-]{section.4}{Conclusions}{}% 25
