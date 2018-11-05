@@ -132,7 +132,7 @@ create_ZT_test_case \
 compare_results
 	
 MAKE_COMPILATION_DATE:
-	echo "SPICE_CABLE_MODEL_BUILDER_compilation_date='$(COMPILATION_DATE)' " > compilation_date.inc 
+	echo "NETWORK_SYNTHESIS_compilation_date='$(COMPILATION_DATE)' " > compilation_date.inc 
 
 MAKE_TYPE_SPECIFICATION_MODULE:
 	( cd TYPE_SPECIFICATION_MODULE ; $(MAKE) )

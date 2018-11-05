@@ -102,11 +102,11 @@ SAVE
 
 ! version information 
   
-character(LEN=line_length)    :: SPICE_CABLE_MODEL_BUILDER_version
+character(LEN=line_length)    :: NETWORK_SYNTHESIS_version
 
-character(LEN=line_length)    :: SPICE_CABLE_MODEL_BUILDER_date
+character(LEN=line_length)    :: NETWORK_SYNTHESIS_date
   
-character(LEN=line_length)    :: SPICE_CABLE_MODEL_BUILDER_compilation_date
+character(LEN=line_length)    :: NETWORK_SYNTHESIS_compilation_date
 
 ! program run status information 
 

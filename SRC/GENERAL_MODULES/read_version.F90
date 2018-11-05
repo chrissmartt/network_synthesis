@@ -52,9 +52,9 @@
   
   include '../compilation_date.inc'        ! this file specifies the compilation date
   
-  write(*,*)'Version :',trim(SPICE_CABLE_MODEL_BUILDER_version)
-  write(*,*)'Date :',trim(SPICE_CABLE_MODEL_BUILDER_date)
-  write(*,*)'Compilation date:',trim(SPICE_CABLE_MODEL_BUILDER_compilation_date)
+  write(*,*)'Version :',trim(NETWORK_SYNTHESIS_version)
+  write(*,*)'Date :',trim(NETWORK_SYNTHESIS_date)
+  write(*,*)'Compilation date:',trim(NETWORK_SYNTHESIS_compilation_date)
   
   END SUBROUTINE read_version
 

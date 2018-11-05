@@ -1,0 +1,77 @@
+rm -f *.fout result_comparison_Re.dat result_comparison_Im.dat
+echo "
+_________________________________________
+
+RUNNING TEST CASE: $1 $2 $3
+_________________________________________
+
+"
+../bin/network_synthesis $1 $2
+
+# Check whether the process has completed correctly
+
+read CHECK < run_status
+if [ "$CHECK" != "network_synthesis:Finished_Correctly" ]; then
+# We need to organise the logic here such that the test case fails and
+# the system goes on to the next test case
+  exit 1
+fi
+
+ngspice -b ngspice_circuit.cir -o spice_result.fout
+
+# COMPARE THE SPICE MODEL AGAINST THE ANALYTIC MODEL USING THE 
+# COMPARE_RUN_DIRECTORY PROCESS
+
+#The real and imaginary parts are done separately
+
+# create an input file for the result comparison process
+      echo "Rational_funtion.fout
+1
+2
+spice_result.fout
+2
+3
+result_comparison_Re.dat
+" > compare_results_in.txt
+
+      echo " "
+      ../bin/compare_results < compare_results_in.txt
+      read CHECK < run_status
+      if [ "$CHECK" != "compare_results:Finished_Correctly" ]; then
+        cd ../..
+        echo "${TEST_CASE} *** FAILED ***: compare_results" >> status
+        continue
+      fi
+
+# add the error between spice and analytic solutions to the status line    
+      read RE_ERROR < result_comparison_Re.dat
+
+# create an input file for the result comparison process
+      echo "Rational_funtion.fout
+1
+3
+spice_result.fout
+2
+4
+result_comparison_Im.dat
+" > compare_results_in.txt
+
+      echo " "
+      ../bin/compare_results < compare_results_in.txt
+      read CHECK < run_status
+      if [ "$CHECK" != "compare_results:Finished_Correctly" ]; then
+        cd ../..
+        echo "${TEST_CASE} *** FAILED ***: compare_results" >> status
+        continue
+      fi
+
+# add the error between spice and analytic solutions to the status line    
+      read IM_ERROR < result_comparison_Im.dat
+
+echo "TEST CASE: $1        Error: ($RE_ERROR + j $IM_ERROR)"
+
+if [ "$3" != "no_plot" ]; then
+gnuplot plot.plt
+fi
+
+

@@ -1,0 +1,2 @@
+NETWORK_SYNTHESIS_version="1.0.0"
+NETWORK_SYNTHESIS_date="5th November 2018"
