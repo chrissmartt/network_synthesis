@@ -1,4 +1,8 @@
+
+# Clean the results files.
+
 rm -f *.fout result_comparison_Re.dat result_comparison_Im.dat
+
 echo "
 _________________________________________
 
