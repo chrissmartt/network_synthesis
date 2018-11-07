@@ -1,29 +1,33 @@
+! This file forms part of the NETWORK_SYNTHESIS project
 !
-! This file is part of SACAMOS, State of the Art CAble MOdels in Spice. 
-! It was developed by the University of Nottingham and the Netherlands Aerospace 
-! Centre (NLR) for ESA under contract number 4000112765/14/NL/HK.
-! 
-! Copyright (C) 2016-2017 University of Nottingham
-! 
-! SACAMOS is free software: you can redistribute it and/or modify it under the 
+! Software to generate Spice sub-circuit models to reproduce
+! impedance functions specified as either s-domain rational functions
+! or pole-residue representations. 
+!
+! Copyright (C) 2018 University of Nottingham
+!
+! NETWORK_SYNTHESIS is free software: you can redistribute it and/or modify it under the 
 ! terms of the GNU General Public License as published by the Free Software 
 ! Foundation, either version 3 of the License, or (at your option) any later 
 ! version.
 ! 
-! SACAMOS is distributed in the hope that it will be useful, but 
+! NETWORK_SYNTHESIS is distributed in the hope that it will be useful, but 
 ! WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
 ! or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
 ! for more details.
 ! 
 ! A copy of the GNU General Public License version 3 can be found in the 
-! file GNU_GPL_v3 in the root or at <http://www.gnu.org/licenses/>.
+! file COPYING.txt in the root or at <http://www.gnu.org/licenses/>.
 ! 
-! SACAMOS uses the EISPACK library (in /SRC/EISPACK). EISPACK is subject to 
+! NETWORK_SYNTHESIS uses the EISPACK library. EISPACK is subject to 
 ! the GNU Lesser General Public License. A copy of the GNU Lesser General Public 
-! License version can be found in the file GNU_LGPL in the root of EISPACK 
-! (/SRC/EISPACK ) or at <http://www.gnu.org/licenses/>.
+! License version can be found in the file COPPYING.LESSER.txt 
+! or at <http://www.gnu.org/licenses/>.
 ! 
 ! The University of Nottingham can be contacted at: ggiemr@nottingham.ac.uk
+!
+! Author C Smartt
+!
 !
 ! File Contents:
 ! MODULE network_synthesis
@@ -37,7 +41,6 @@ USE general_module
 USE constants
 USE frequency_spec
 USE filter_module
-USE Sfilter_fit_module
 
 IMPLICIT NONE
 
@@ -111,7 +114,6 @@ USE general_module
 USE constants
 USE frequency_spec
 USE filter_module
-USE Sfilter_fit_module
 USE network_synthesis_global
 
 IMPLICIT NONE
@@ -173,6 +175,7 @@ logical :: pole_at_zero
 logical :: zero_at_zero
 
 logical :: renormalise_input_filter
+logical :: non_physical_impedance
 
 real(dp):: wnorm_save
 
@@ -191,9 +194,11 @@ real(dp) :: re_p,im_p,re_r,im_r
   run_status='Started'
   CALL write_program_status()
   
-!  CALL read_version()
+  CALL read_version()
     
-!  CALL write_license()
+  CALL write_license()
+  
+  non_physical_impedance=.FALSE.
 
 INCLUDE 'include_read_and_plot_function.F90'
 
@@ -219,9 +224,9 @@ INCLUDE 'include_read_and_plot_function.F90'
   
   if (R_min.LT.0d0) then
   
-    write(*,*)'Adding 1.5*abs(Minimum Resistance value) to H'
+    write(*,*)'Adding 1.01*abs(Minimum Resistance value) to H'
   
-    R_add=1.5d0*abs(R_min)
+    R_add=1.01d0*abs(R_min)
     Rdc_filter=allocate_Sfilter(0,0)
     Rdc_filter%a%coeff(0)=R_add
     Rdc_filter%b%coeff(0)=1d0
@@ -232,7 +237,9 @@ INCLUDE 'include_read_and_plot_function.F90'
     H=T1
     CALL deallocate_Sfilter(T1)
     CALL deallocate_Sfilter(Rdc_filter)
-
+    
+    non_physical_impedance=.TRUE.
+    
   else
   
     write(*,*)'No resistance added to H'
@@ -467,6 +474,12 @@ INCLUDE 'include_write_frequency_response.F90'
   CALL deallocate_Sfilter(T1)
   CALL deallocate_Sfilter(Rdc_filter)
   deallocate( CFterm )
+  
+  if (non_physical_impedance) then
+    write(*,*)'WARNING: The input impedance is non-physical.'
+    write(*,*)'A resistance has been added in series to make this a physical impedance'
+    write(*,*)'Added resistance=',R_add,' Ohms'
+  end if
   
   run_status='Finished_Correctly'
   CALL write_program_status()

@@ -1,3 +1,13 @@
+# Check that we have one command line inputs: filename for function specification
+if [ "$#" != "1" ] ; then
+
+  echo "run as follows:
+  run_test filename
+  example:
+  run_test test_RCRL_ladder"
+  exit 1
+  
+fi
 
 # Clean the results files.
 

@@ -1,0 +1,10 @@
+# GGI_TLM_filter_fit_Z.CSV Model order.4. created by GGI_TLM_filter_fit  : STABLE
+   10000000.000000000        3000000000.0000000       # frequency range of validity
+# Impedance filter
+   18849555921.538757        # w normalisation constant
+           4   # a order, a coefficients follow below:
+   8.5604158162033865        33.267819445660514        32.874085096791930       
+ 58.222256774446194        28.483490033098505     
+           4   # b order, b coefficients follow below:
+   1.0000000000000000        4.1417080827732614E-002   3.7891438932659129       
+ 7.7062005904487460E-002   3.1996230105859684     

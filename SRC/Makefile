@@ -95,18 +95,13 @@ export POLYNOMIAL_AND_FILTER_MODULES_OBJS
 POLYNOMIAL_AND_FILTER_MODULE=$(OBJ_MOD_DIR)/filter_module.o $(OBJ_MOD_DIR)/filter_module.mod
 export POLYNOMIAL_AND_FILTER_MODULES
 
-SFILTER_FIT_OBJS=$(OBJ_MOD_DIR)/Sfilter_fit_module.o
-export SFILTER_FIT_OBJS
-SFILTER_FIT_MODULES=$(OBJ_MOD_DIR)/Sfilter_fit_module.o $(OBJ_MOD_DIR)/sfilter_fit_module.mod
-export SFILTER_FIT_MODULES
 
 OBJS= \
 $(TYPE_SPEC_OBJS) \
 $(GENERAL_MODULES_OBJS) \
 $(EISPACK_OBJS) \
 $(MATHS_OBJS) \
-$(POLYNOMIAL_AND_FILTER_MODULES_OBJS) \
-$(SFILTER_FIT_OBJS) 
+$(POLYNOMIAL_AND_FILTER_MODULES_OBJS) 
 
 MODS= \
 $(TYPE_SPEC_MODULE) \
@@ -115,8 +110,7 @@ $(GENERAL_MODULE) \
 $(FREQ_MODULE) \
 $(EISPACK_MODULE) \
 $(MATHS_MODULE) \
-$(POLYNOMIAL_AND_FILTER_MODULES) \
-$(SFILTER_FIT_MODULES) 
+$(POLYNOMIAL_AND_FILTER_MODULES)
 
 default: \
 MAKE_COMPILATION_DATE \
@@ -125,10 +119,7 @@ MAKE_GENERAL_MODULES \
 MAKE_EISPACK \
 MAKE_MATHS_MODULES \
 MAKE_POLYNOMIAL_AND_FILTER_MODULES \
-MAKE_SFILTER_FIT_MODULES \
 network_synthesis \
-create_test_case \
-create_ZT_test_case \
 compare_results
 	
 MAKE_COMPILATION_DATE:
@@ -148,10 +139,7 @@ MAKE_MATHS_MODULES:
 	
 MAKE_POLYNOMIAL_AND_FILTER_MODULES:
 	( cd POLYNOMIAL_AND_FILTER_MODULES ; $(MAKE) )
-	
-MAKE_SFILTER_FIT_MODULES:
-	( cd SFILTER_FIT ; $(MAKE) )
-        
+	        
 include_f90_files=\
 include_local_filter_subroutines.F90 \
 include_test_positive_real.F90 \
@@ -173,19 +161,11 @@ include_BRUNE_test.F90
 network_synthesis: network_synthesis.F90 $(include_f90_files) $(MODS)
 	$(FC) $(FLAGS) -o $(EXECUTABLE_DIR)/network_synthesis network_synthesis.F90 $(OBJS) $(LIBS)
 
-create_test_case: create_test_case.F90 $(MODS)
-	$(FC) $(FLAGS) -o $(EXECUTABLE_DIR)/create_test_case create_test_case.F90 $(OBJS) $(LIBS)
-
-create_ZT_test_case: create_ZT_test_case.F90 $(MODS)
-	$(FC) $(FLAGS) -o $(EXECUTABLE_DIR)/create_ZT_test_case create_ZT_test_case.F90 $(OBJS) $(LIBS)
-
 compare_results: compare_results.F90 $(MODS)
 	$(FC) $(FLAGS) -o $(EXECUTABLE_DIR)/compare_results compare_results.F90 $(OBJS) $(LIBS)
 
 clean:
 	( rm -f $(EXECUTABLE_DIR)/network_synthesis* )
-	( rm -f $(EXECUTABLE_DIR)/create_test_case* )
-	( rm -f $(EXECUTABLE_DIR)/create_ZT_test_case* )
 	( rm -f $(EXECUTABLE_DIR)/compare_results* )
 	( rm -f *.o )
 	( rm -f $(OBJ_MOD_DIR)/*.mod )

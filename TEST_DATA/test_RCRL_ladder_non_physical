@@ -1,8 +1,8 @@
 # rational function impedance representation
 0.01 1.0 # fmin, fmax not normalised (though it doesn't matter in this case)
-# Impedance filter
+# Impedance filter - negative resistance
 1d0 # wnorm
 2   # a order, a coefficients follow below:
-2d0 2d0 1d0
+0d0 0d0 -1d0
 2   # b order, b coefficients follow below:
 1d0 1d0 1d0

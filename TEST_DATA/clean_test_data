@@ -1,1 +1,2 @@
-rm compare_results_in.txt   Rational_funtion.fout   run_status Continued_fraction.fout ngspice_circuit.cir  result_comparison_Im.dat  spice_result.fout result_comparison_Re.dat 
+rm compare_results_in.txt   Rational_funtion.fout   run_status Continued_fraction.fout 
+rm ngspice_circuit.cir impedance.lib result_comparison_Im.dat  spice_result.fout result_comparison_Re.dat 
