@@ -1,5 +1,72 @@
 \section{Network Synthesis Software} \label{software}
 
+The software may be compiled in a unix type operating system by going into the SRC/ directory and using the command
+
+make
+
+The makefile may need to be altered for different compilers or to apply specific compilation flags for example. The Makefile in SRC/ is designed to use the f95 gfortran compiler. The executable file, network\_synthesis, is moved to the bin directory.
+
+\subsection{Running network\_synthesis}
+
+The network synthesis process required a command line argument which is the filename of the input impedance function. It is run woith the command
+
+network\_synthesis filename
+
+The input impedance function file may take one of two forms; a pole-residue format or a rational function format as described below.
+
+\subsubsection{Pole-residue format}
+
+The pole-residue input file format contains the pole-residue representation of the input function for the specified model order.
+The format of the function uses a normalised angular frequency where the angular frequency normalisation (wnorm) is often based on the
+maximum frequency in the input data used in a curve fitting process (for example the VECTOR\_FIT software (https://github.com/chrissmartt/vector\_fit). The function is therefore of the form
+
+\begin{equation}\label{eq:pr1}
+Z \left( s \right) = d+\frac{s}{wnorm} h+\sum_{n=1}^N \frac{c_n}{\frac{s}{wnorm}-a_n} 
+\end{equation} 
+
+At the end of the file is the (normalised) frequency range and number of samples in the input data.
+
+Below is an example input function in pole-residue form:
+
+\begin{small}
+\begin{verbatim}
+Vfit filter output
+           1  # order
+   628318530.71795857       # wnorm
+   8.5000000899999470E-002  # d
+   27.017695590661077       # h
+                   pole (a)                              residue (c)
+-1.12842870712061E-021 0.00000000000000   1.59154949383951E-003 0.00000000000000     
+        wnorm_min             wnorm_max                   nw
+1.0000000000000001E-005   1.0000000000000000              200
+\end{verbatim}
+\end{small}
+
+\subsubsection{Rational function format}
+
+The rational function impedance takes the form:
+
+\begin{equation}\label{eq:rat1}
+Z \left( s \right) = \frac{a_0+a_1 \frac{s}{w_{norm}} + +a_2 \frac{s}{w_{norm}}^2 + \dots}
+{b_0+b_1 \frac{s}{w_{norm}} + +b_2 \frac{s}{w_{norm}}^2 + \dots}
+\end{equation} 
+
+The file contains the frequency range of validity of the model (often the frequency range for which data is available for a curve fitting process applied to dervive the rational function model e.g. GGI\_TLM\_filter\_fit 
+from the GGI\_TLM project (https://github.com/ggiemr/GGI\_TLM)). Following this is the angular frequency normalisation constant then in turn the numerator order, numerator coefficients, denominator order and denominator coefficients.
+
+Below is an example input function in rational function form:
+
+\begin{verbatim}
+# rational function impedance representation
+0.01 1.0 # fmin, fmax (not normalised)
+# Impedance filter
+1d0 # wnorm
+2   # a order, a coefficients follow below:
+2d0 2d0 1d0
+2   # b order, b coefficients follow below:
+1d0 1d0 1d0
+\end{verbatim}
+
 
 
 \clearpage
