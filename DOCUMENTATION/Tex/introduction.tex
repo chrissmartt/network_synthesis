@@ -1,11 +1,26 @@
 \section{Section}\label{introduction}
 
+The network synthesis process implemented in this work aims to develop a one port passive electrical circuit which reproduces a specified frequency dependent impedance function. The impedance function may be represented in a rational function form or in a pole-residue form and the resulting network is developed as a Spice sub-circuit model. 
 
-This document describes the theory which underlies the modelling of frequency dependent transfer functions as passive circuits in Spice.
+The software is written in Fortran and includes a Makefile to allow the software to be compiled under unix. Windows users may install Cygwin (which is effectively a unix type environment) and then compile the software under cygwin. 
 
-The document is structured as follows:
+This document describes the theory which underlies the modelling of frequency dependent transfer functions as passive circuits in Spice before describing the software which implements the process and presenting some examples of the process in action. 
 
-Section \ref{network_synthesis} describes the theory of one port network synthesis.
+\subsection{License}
 
-Chapter \ref{conclusions} 
+There are 2 license types used in the NETWORK\_SYNTHESIS project.
+
+GPL - GNU General Public License v.3
+See COPYING in root
+
+LGPL - GNU Lesser General Public License v.3
+See COPYING.LESSER in root
+
+These licenses are applied as follows:
+
+GPL: 
+Applies to all source coded with the exception of the eispack library in /SRC/EISPACK
+
+LGPL
+Applies to the eispack library in /SRC/EISPACK
 
