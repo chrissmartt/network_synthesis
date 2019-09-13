@@ -22,7 +22,7 @@ endif
 
 # Compilation flags, Option 1. Here we compile with bounds check - slow but good for development testing...
 
-FLAGS=  -D$(MODE) -cpp -std=f2008 -fbounds-check -finit-real=nan -finit-integer=nan -J$(OBJ_MOD_DIR) -I$(OBJ_MOD_DIR) -freal-4-real-8
+FLAGS=  -D$(MODE) -cpp -std=f2008 -g -fbounds-check -finit-real=nan -finit-integer=nan -J$(OBJ_MOD_DIR) -I$(OBJ_MOD_DIR) -freal-4-real-8
 
 # Compilation flags, Option 1b. as for option 1 but we compile with -static (for Windows)
 

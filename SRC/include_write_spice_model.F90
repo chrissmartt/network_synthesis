@@ -165,8 +165,8 @@ integer  :: next_node,node1,node2,last_series_node,inode1,inode2,R_add_node,ref_
       write(40,'(A,I2.2,A,I6,I6,ES12.4)')'R',loop   ,' ',node1,inode1,R
       next_node=next_node+1
       write(40,'(A,I2.2,A,I6,I6,ES12.4)')'L1',loop  ,' ',inode1,inode2,L
-      write(40,'(A,I2.2,A,I6,I6,ES12.4)')'C',loop   ,' ',inode2,0 ,C
-      write(40,'(A,I2.2,A,I6,I6,ES12.4)')'Rbig',loop,' ',inode2,0 ,1E8
+      write(40,'(A,I2.2,A,I6,I6,ES12.4)')'C',loop   ,' ',inode2,ref_node ,C
+      write(40,'(A,I2.2,A,I6,I6,ES12.4)')'Rbig',loop,' ',inode2,ref_node ,1E8
       write(40,'(A,I2.2,A,I6,I6,ES12.4)')'L2',loop  ,' ',node2,inode2,L2
 ! note directions of inductor specifications      
       write(40,'(A,I2.2,A,I2.2,A,I2.2,A,ES12.4)')'K',loop ,' L1',  &

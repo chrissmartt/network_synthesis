@@ -43,6 +43,7 @@
   end if
 
   verbose=.FALSE.
+  verbose=.TRUE.
   
   CALL get_command_argument(2 , argument2, argument2_length)
 

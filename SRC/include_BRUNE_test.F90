@@ -139,7 +139,7 @@ IMPLICIT NONE
   CALL LC_test_BRUNE(Y2_PR,L2,C,found,Y3,remainder_OK,remainder_zero)
                
   if (verbose) then
-    write(*,*)'CALLED LC_test_BRUNE'
+    write(*,*)'FINISHED LC_test_BRUNE'
     write(*,*)'L2=',L2
     write(*,*)'C =',C
     write(*,*)'found =',found
@@ -286,6 +286,9 @@ IMPLICIT NONE
 
   if (verbose) write(*,*)'CALLED: LC_test_BRUNE'
 
+  R=0d0
+  L=0d0
+  C=0d0
   found=.FALSE.
 
   first_complex_pole=H_PR%n_real_poles+1
